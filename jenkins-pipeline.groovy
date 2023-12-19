@@ -21,7 +21,7 @@ pipeline {
         stage('PACK_AND_PUB') {
             steps {
                 withPythonEnv('python3') {
-                    sh ("python 1_package_and_publish/run_packaging.py '${DESIGN_URL}' $DESIGN_API_KEY '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_DEV_INFRA_ID}' '${API_PROD_INFRA_ID}'")
+                    sh ('python 1_package_and_publish/run_packaging.py '${DESIGN_URL}' $DESIGN_API_KEY '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_DEV_INFRA_ID}' '${API_PROD_INFRA_ID}' ')
                 }
             }
         }
