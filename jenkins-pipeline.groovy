@@ -28,8 +28,8 @@ pipeline {
         stage('DEV_TEST') {
             steps {
                 withPythonEnv('python3') {
-                    sh "python 2_deploy_dev/run_deploy_dev.py '${DESIGN_URL}' '${DESIGN_API_KEY}' '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_DEV_INFRA_ID}'"
-                    sh "pytest -s 2_deploy_dev/test_dev.py -o junit_family=xunit1 --host='${DESIGN_URL}' --api='${DESIGN_API_KEY}' --api_service_id='${API_SERVICE_ID}' --api_endpoint_id='${API_ENDPOINT_ID}' --api_dev_infra_id='${API_DEV_INFRA_ID}' --junitxml=reports/DEV_TEST.xml"
+                    sh "python 2_deploy_dev/run_deploy_dev.py '${DESIGN_URL}' '$DESIGN_API_KEY' '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_DEV_INFRA_ID}'"
+                    sh "pytest -s 2_deploy_dev/test_dev.py -o junit_family=xunit1 --host='${DESIGN_URL}' --api='$DESIGN_API_KEY' --api_service_id='${API_SERVICE_ID}' --api_endpoint_id='${API_ENDPOINT_ID}' --api_dev_infra_id='${API_DEV_INFRA_ID}' --junitxml=reports/DEV_TEST.xml"
                     
                 }                
             }
@@ -39,7 +39,7 @@ pipeline {
                 script {
                 try {
                     withPythonEnv('python3') {
-                        sh "python 3_deploy_prod/run_deploy_prod.py '${DESIGN_URL}' '${DESIGN_API_KEY}' '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_PROD_INFRA_ID}'"
+                        sh "python 3_deploy_prod/run_deploy_prod.py '${DESIGN_URL}' '$DESIGN_API_KEY' '${DSS_PROJECT}' '${API_SERVICE_ID}' '${api_package_id}' '${API_PROD_INFRA_ID}'"
                     }
                 } catch (Exception err) {
                         echo 'Exception occurred: ' + err.getMessage()
